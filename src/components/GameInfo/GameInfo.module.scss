@@ -1,0 +1,12 @@
+.gameInfo{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: 1px solid black;
+}
+
+.resetButton{
+    cursor: pointer;
+}

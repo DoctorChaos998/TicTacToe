@@ -1,0 +1,1 @@
+export type cellType = "X"|"O"|null
