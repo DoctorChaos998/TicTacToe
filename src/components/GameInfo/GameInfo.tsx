@@ -1,5 +1,5 @@
+import styled from "styled-components"
 import { cellType } from "../../types"
-import classes from "./GameInfo.module.scss"
 
 interface IGameInfo{
     currentStep: cellType,
@@ -9,33 +9,30 @@ interface IGameInfo{
 }
 
 const GameInfo = ({currentStep, winnerSymbol, isDraw, resetGame}: IGameInfo) => {
-    if(isDraw) return (
-        <div className={classes.gameInfo}>
+    return(
+        <GameInfoContainer>
             <h4>
-                Is draw
+                {isDraw?'Is draw':winnerSymbol?`Winner symbol: ${winnerSymbol}`:`Current step: ${currentStep}`}
             </h4>
-            <button className={classes.resetButton} onClick={resetGame}>
+            {(isDraw||winnerSymbol) && 
+            <ResetButton onClick={resetGame}>
                 Reset game
-            </button>
-        </div>
-    )
-    if(winnerSymbol) return (
-        <div className={classes.gameInfo}>
-            <h4>
-                Winner symbol: {winnerSymbol}
-            </h4>
-            <button className={classes.resetButton} onClick={resetGame}>
-                Reset game
-            </button>
-        </div>
-    )
-    return (
-        <div className={classes.gameInfo}>
-            <h4>
-                Current step: {currentStep}
-            </h4>
-        </div>
+            </ResetButton>}
+        </GameInfoContainer>
     )
 }
 
 export default GameInfo
+
+const GameInfoContainer = styled.div({
+    height: '100px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px',
+    borderBottom: '1px solid black'
+});
+
+const ResetButton = styled.button({
+    cursor: "pointer"
+})
